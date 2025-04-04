@@ -1,10 +1,17 @@
 from django.db import models
 
 
+class Classification(models.Model):
+    title = models.CharField(max_length=200)
+    serial_number = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.title}-{self.serial_number}"
+
 class LguEquipment(models.Model):
 
     CONDITION_CHOICES = [('Serviceable','Serviceable'),('Unserviceable','Unserviceable')]
-
+    classification = models.ForeignKey(Classification,on_delete=models.CASCADE,related_name='equipments',null=True,blank=True)
     article = models.CharField(max_length=200)
     description = models.CharField(max_length=200, blank=True, null=True)
     property_number = models.CharField(max_length=50, unique=True)
@@ -15,3 +22,5 @@ class LguEquipment(models.Model):
 
     def __str__(self):
         return f"{self.article} - {self.property_number}"
+
+

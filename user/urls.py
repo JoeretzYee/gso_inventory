@@ -11,3 +11,4 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login (Get JWT Token)
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Refresh token
 ]
+
